@@ -1,0 +1,73 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id                    String                  @id @default(uuid())
+  name                  String?                 
+  email                 String?                 @unique
+  password              String?
+  phone                 String?
+  emailVerified         DateTime?               @map("email_verified")
+  image                 String?                 @db.Text
+  role                  String                  @default("user")
+  accounts              Account[]
+  isTwoFactorEnabled    Boolean                 @default(false)
+  TwoFactorConfirmation TwoFactorConfirmation?
+
+  @@map("user")
+}
+
+model Account {
+  id               String  @id @default(uuid())
+  userId           String
+  type             String
+  provider         String
+  providerAccountId String  @map("provider_account_id")
+  refresh_token    String? @db.Text
+  access_token     String? @db.Text
+  expires_at       Int?
+  token_type       String?
+  scope            String?
+  id_token         String? @db.Text
+  session_state    String?
+  user             User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+  @@map("account")
+  @@index([userId])
+}
+
+model PasswordResetToken {
+  id      Int      @id @default(autoincrement())
+  email   String   @db.VarChar(255)
+  token   String   @unique
+  expires DateTime
+
+  @@unique([email, token])
+  @@index([email])
+}
+
+model twoFactorToken {
+  id      Int      @id @default(autoincrement())
+  email   String   @db.VarChar(255)
+  token   String   @unique
+  expires DateTime
+
+  @@unique([email, token])
+  @@index([email])
+}
+
+model TwoFactorConfirmation {
+  id     String @id @default(uuid())
+  userId String
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId])
+  @@index([userId])
+}
