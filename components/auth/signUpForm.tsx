@@ -70,6 +70,7 @@ export function SignUpForm() {
 
   return (
     <div className=" mt-20 flex flex-col bg-white py-12 space-y-4 border border-yellow-500 shadow-lg rounded-lg  w-full">
+      
        <div className=" w-full items-center flex text-center bg-yellow-500 py-4 justify-center">
         <h1 className=" text-2xl font-poppins font-bold">AUG Legacy Oil</h1>
       </div>

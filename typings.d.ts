@@ -1,16 +1,4 @@
-interface Project {
-    id: string 
-    title: string
-    length: string
-    description: string
-    duration: DateTime
-    valuation: string
-    state: string
-    city: string
-    location: string 
-    sharePrice: number 
-    roi: number
-}
+
 
 interface User {
     id: string
@@ -20,12 +8,39 @@ interface User {
     image: string 
 }
 
-interface Investment {
-    id: string
-    projectId: Project
-    userId: User
-    amount: number 
-    investmentDate: string 
-    payDay: string
 
-}
+interface outPutDispatchType {
+    id:                                 string
+    destination:                        string
+    driverPhoneNumber:                  string
+    driverName:                         string
+    driverVehicleNumber:                string
+    driverVehicleType:                  string
+    truckCapacity:                      string
+    productType:                        string
+    productUnits:                       string
+    dispatchDate:                       DateTime
+    updatedAt:                          DateTime
+  }
+  
+  
+  
+  interface inputDispatchType { 
+    id:                                string 
+    driverName:                        string
+    driverPhoneNumber:                 string 
+    driverVehicleNumber:               string | undefined
+    driverVehicleType:                 string | undefined
+    productWeightByWayBill:            string | undefined
+    productWeightByScale:              string | undefined
+    productSource:                     string | undefined
+    difference:                        string | undefined // short and long
+    productType:                       string | undefined
+    arrivalTime:                       DateTime
+    dispatchDate:                      DateTime
+    updatedAt:                         DateTime
+    createdAt:                         DateTime
+  }
+  
+  
+  

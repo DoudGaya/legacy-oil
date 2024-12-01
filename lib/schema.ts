@@ -60,32 +60,28 @@ export const loginSchema = z.object({
     }),
   })
 
-
-  export const InputSchema = z.object({
-    driverName: z.string().min(2, {
-      message: "Please provide your Full Name",
-    }),
-    driverPhoneNumber: z.string().min(3, {
-      message: "Please add Phone Number",
-    }),
-    vehicleNumber: z.string().optional(),
-    weight: z.string().optional(),
-    short: z.string().optional(),
-    long: z.string().optional(),
-    depature: z.string().optional(),
+  export const inputDispatchSchema = z.object({
+    driverName: z.string().min(1, "Driver name is required"),
+    driverPhoneNumber: z.string().min(1, "Driver phone number is required"),
+    driverVehicleNumber: z.string().min(1, "Vehicle number is required"),
+    driverVehicleType: z.string().min(1, "Vehicle type is required"),
+    productWeightByWayBill: z.string().min(1, "Product weight by way bill is required"),
+    productWeightByScale: z.string().min(1, "Product weight by scale is required"),
+    productSource: z.string().min(1, "Product source is required"),
+    difference: z.string().optional(),
+    productType: z.string().min(1, "Product type is required"),
+    dispatchDate: z.string().min(1, "Dispatch date is required"),
   })
 
-  
-  export const outputSchema = z.object({
-    driverName: z.string().min(2, {
-      message: "Please provide your Full Name",
-    }),
-    driverPhoneNumber: z.string().min(3, {
-      message: "Please add Phone Number",
-    }),
-    vehicleNumber: z.string().optional(),
-    weight: z.string().optional(),
-    short: z.string().optional(),
-    long: z.string().optional(),
-    depature: z.string().optional(),
+
+  export const outputDispatchSchema = z.object({
+    destination: z.string().min(1, "Destination is required"),
+    driverPhoneNumber: z.string().min(1, "Driver phone number is required"),
+    driverName: z.string().min(1, "Driver name is required"),
+    driverVehicleNumber: z.string().min(1, "Vehicle number is required"),
+    driverVehicleType: z.string().min(1, "Vehicle type is required"),
+    truckCapacity: z.string().min(1, "Truck capacity is required"),
+    productType: z.string().min(1, "Product type is required"),
+    productUnits: z.string().optional(),
+    dispatchDate: z.string().min(1, "Dispatch date is required"),
   })

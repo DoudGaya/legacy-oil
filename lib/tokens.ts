@@ -2,7 +2,7 @@ import { v4 as uuid } from "uuid"
 import { db } from "./db"
 import crypto from 'crypto'
 import { getTwoFactorTokenByEmail } from "@/data/two-factor-token"
-import { getVerificationTokenByEmail } from "@/data/verification-token"
+// import { getVerificationTokenByEmail } from "@/data/verification-token"
 import { getPasswordResetTokenByEmail } from "@/data/password-reset-token"
 
 
@@ -60,29 +60,29 @@ export const generatePasswordResetToken = async (email: string ) => {
 
 
 
-export const generateVerificationToken = async (email: string) => {
+// export const generateVerificationToken = async (email: string) => {
   
   
-    const token = uuid()
-    const expires = new Date (new Date().getTime() + 3600 * 1000)
-    const existingTokens = await getVerificationTokenByEmail(email)
+//     const token = uuid()
+//     const expires = new Date (new Date().getTime() + 3600 * 1000)
+//     const existingTokens = await getVerificationTokenByEmail(email)
 
 
-    if (existingTokens) {
-        await db.verificationToken.delete({
-            where: {
-                id: existingTokens.id
-            }
-        })
-     }
+//     if (existingTokens) {
+//         await db.verificationToken.delete({
+//             where: {
+//                 id: existingTokens.id
+//             }
+//         })
+//      }
 
-     const verificationToken = await db.verificationToken.create({
-        data: {
-            email,
-            token,
-            expires,
-        }
-     })
+//      const verificationToken = await db.verificationToken.create({
+//         data: {
+//             email,
+//             token,
+//             expires,
+//         }
+//      })
 
-     return verificationToken
-}
+//      return verificationToken
+// }

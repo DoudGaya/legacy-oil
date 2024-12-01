@@ -1,4 +1,4 @@
-import { UserRole } from "@prisma/client";
+
 import NextAuth, {type DefaultSession} from "next-auth";
 
 
@@ -12,7 +12,6 @@ export type ExtendedUser = DefaultSession["user"] & {
     isOAuth: boolean
     image: string | null
     emailVerified: Date | null;
-    role: $Enums.UserRole;
 }
 
 

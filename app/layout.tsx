@@ -1,12 +1,9 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
 import { ThemeProvider } from "@/components/theme-provider"
 import { SessionProvider } from "next-auth/react";
 import { auth } from "@/auth";
 import "./globals.css";
-import { Footer } from "@/components/Footer";
 
-const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "AUG Legacy Oil",
@@ -23,14 +20,16 @@ export default async function RootLayout({
   return (
     <html lang="en">
      <SessionProvider session={session}>
-     <body className={`${inter.className}`}>
+     <body className={``}>
       <ThemeProvider
             attribute="class"
             defaultTheme="system"
             enableSystem
             disableTransitionOnChange
           >
-        {children}
+       <div className="">
+          {children}
+       </div>
       </ThemeProvider>
       </body>
      </SessionProvider>

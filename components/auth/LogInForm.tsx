@@ -1,37 +1,28 @@
 "use client"
-
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import { useState, useTransition } from "react"
 import { z } from "zod"
-import { FcGoogle } from "react-icons/fc";
-import logo from '@/public/img/logo-icon.png'
-import Link from "next/link";
 import { loginSchema } from "@/lib/schema"
-import { REGEXP_ONLY_DIGITS_AND_CHARS } from "input-otp"
-import {
-  InputOTP,
-  InputOTPGroup,
-  InputOTPSlot,
-} from "@/components/ui/input-otp"
-
+import logo from '@/public/legacy.jpg'
+import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
   FormMessage,
 } from "@/components/ui/form"
-import Image from "next/image"
 import { Input } from "@/components/ui/input"
 import { FormError } from "../FormError";
 import { FormSuccess } from "../FormSuccess";
 import { login } from "@/actions/login"
 import { signIn } from "next-auth/react"
-import { DEFAULT_LOGGED_IN_REDIRRECT } from "@/routes"
+import { 
+  DEFAULT_LOGGED_IN_REDIRRECT 
+} from "@/routes"
 import { useSearchParams } from "next/navigation"
 
 
@@ -44,8 +35,7 @@ export function LoginForm() {
   const searchParams = useSearchParams()
   const urlError = searchParams.get("error") === "OAuthAccountNotLinked" ? "Email already been used with another provider" : ""
 
-
-   const form = useForm<z.infer<typeof loginSchema>>({
+  const form = useForm<z.infer<typeof loginSchema>>({
     resolver: zodResolver(loginSchema),
     defaultValues: {
       email: "",
@@ -75,10 +65,6 @@ export function LoginForm() {
           form.reset() 
           setError(data.error)
         }
-        // if (data?.success) {
-        //   form.reset()
-        //   setSuccess(data.success)
-        // }
       }).catch( (error) => {
         setError("Something Went Wrong!")
       })
@@ -86,6 +72,10 @@ export function LoginForm() {
   }
 
   return (
+   <div className=" w-full flex flex-col space-y-6">
+     <div className="flex items-center justify-center">
+    <Image src={logo} alt="logo" className=" rounded-full h-[140px] w-[140px]" width={500} height={500} />
+  </div>
     <div className="flex flex-col space-y-6 bg-white py-12 border border-yellow-500 shadow-lg rounded-lg  w-full">
       <div className= " flex w-full text-center items-center justify-center py-4 bg-yellow-500">
         <h1 className=" text-2xl font-bold font-poppins">AUG Legacy Oil</h1>
@@ -127,6 +117,7 @@ export function LoginForm() {
       </form>
     </Form>
     </div>
+   </div>
   )
 }
 

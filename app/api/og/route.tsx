@@ -1,8 +1,6 @@
 // @ts-ignore
 
 import { ImageResponse } from 'next/og';
-import logo from '@/public/img/logo-icon.png'
-import Image from 'next/image';
 
 
 export const runtime = "edge"
@@ -15,13 +13,6 @@ export async function GET( request: Request) {
     const title = hasTitle ? searchParams.get("title")?.slice(0, 100) : "StableBrick Engineering"
 
 
-  
-
-    const fontData = await fetch( new URL('../../../assets/fonts/logo-font.ttf', import.meta.url))
-    .then(res => res.arrayBuffer());
-
-    const imageData = await fetch( new URL('../../../assets/stable-bricks-white.png', import.meta.url))
-    .then(res => res.arrayBuffer());
 
 
    try {

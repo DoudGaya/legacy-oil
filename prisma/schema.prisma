@@ -7,6 +7,9 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+
+
+
 model User {
   id                    String                  @id @default(uuid())
   name                  String?                 
@@ -71,3 +74,45 @@ model TwoFactorConfirmation {
   @@unique([userId])
   @@index([userId])
 }
+
+
+model outPutDispatch {
+  id                      String  @id @default(uuid())
+  driverName              String
+  driverPhoneNumber       String
+  destination             String?
+  dispatchType            dispatchType @default(Output)
+  driverVehicleNumber     String?
+  driverVehicleType       String?
+  truckCapacity           String?
+  productType             String?
+  productUnits            String?
+  dispatchDate            DateTime?
+  createdAt               DateTime @default(now())
+}
+
+
+
+model inputDispatch { 
+  id                                String  @id @default(uuid())
+  driverName                        String
+  driverPhoneNumber                 String
+  driverVehicleNumber               String?
+  driverVehicleType                 String?
+  productWeightByWayBill            String?
+  dispatchType                      dispatchType @default(Input)
+  productWeightByScale              String?
+  productSource                     String?
+  difference                        String? // short and long
+  productType                       String?
+  dispatchDate                      DateTime?
+  createdAt                         DateTime @default(now())
+}
+
+
+
+enum dispatchType {
+  Input
+  Output
+}
+

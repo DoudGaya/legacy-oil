@@ -1,6 +1,5 @@
 import Image from 'next/image'
 import React from 'react'
-import logo from '@/public/stable-bricks-white.png'
 import Link from 'next/link'
 const menuItems = ['Home', 'Exclusive Listings', 'Services', 'About Us']
 

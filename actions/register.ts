@@ -5,7 +5,7 @@ import bcrypt from 'bcryptjs'
 import { db } from '@/lib/db'
 import { getUserByEmail } from '@/data/user'
 import { sendVrificationEmail } from '@/lib/mail'
-import { generateVerificationToken } from '@/lib/tokens'
+// import { generateVerificationToken } from '@/lib/tokens'
 
 
 export const regsiter = async (values: z.infer<typeof signUpSchema>) => {
@@ -33,9 +33,10 @@ export const regsiter = async (values: z.infer<typeof signUpSchema>) => {
             email,
             phone,
             password: hashedPassword,
+            emailVerified: new Date().toISOString(),
             role: "user",
         }
     })
 
-    return {success: "Check your email to verify your account!"}
+    return {success: "User has been created successfully"}
 }
