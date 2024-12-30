@@ -15,18 +15,19 @@ export function DispatchItem({ dispatch }: DispatchItemProps) {
 
   return (
     <Card>
-      <CardHeader>
+      <CardHeader className=" bg-yellow-200 rounded-t-lg">
         <CardTitle>{isInputDispatch ? 'Input Dispatch' : 'Output Dispatch'}</CardTitle>
       </CardHeader>
-      <CardContent>
+      <CardContent className=" py-3">
         <p><strong>Driver:</strong> {dispatch.driverName}</p>
         <p><strong>Vehicle:</strong> {dispatch.driverVehicleNumber}</p>
+        <p><strong>Driver Phone:</strong> {dispatch.driverPhoneNumber}</p>
         <p><strong>Product:</strong> {dispatch.productType}</p>
         {isInputDispatch ? (
           <>
             <p><strong>Source:</strong> {(dispatch as inputDispatch).productSource}</p>
-            <p><strong>Weight (Way Bill):</strong> {(dispatch as inputDispatch).productWeightByWayBill}</p>
-            <p><strong>Weight (Scale):</strong> {(dispatch as inputDispatch).productWeightByScale}</p>
+            <p><strong>Weight (Way Bill):</strong> {(dispatch as inputDispatch).productWeightByWayBill} Kg</p>
+            <p><strong>Weight (Scale):</strong> {(dispatch as inputDispatch).productWeightByScale} Kg</p>
           </>
         ) : (
           <>

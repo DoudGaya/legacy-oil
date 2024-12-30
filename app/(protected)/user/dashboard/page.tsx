@@ -9,6 +9,7 @@ const AdminCasePage = async () => {
   const inputs = await getAllInputDispatch() as inputDispatch[]
 
 
+  // @ts-ignore
   const outputDispatch = await getAllOutputDispatch() as outPutDispatch[]
 
 
